@@ -1,0 +1,11 @@
+import numpy as np
+
+np.array()
+np.shape -> returns shape
+np.shape = (N,M) -> sets the shape
+np.reshape((N,M)) -> returns a (N,M) shaped array
+
+arr = np.array([1,2,3] , float) -> returns an array of float values 
+
+arr.transpose() -> returns the transposed matrix/array
+arr.flatten() -> returns an one dimensionall array from N dimensions
