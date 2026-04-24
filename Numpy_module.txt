@@ -9,3 +9,14 @@ arr = np.array([1,2,3] , float) -> returns an array of float values
 
 arr.transpose() -> returns the transposed matrix/array
 arr.flatten() -> returns an one dimensionall array from N dimensions
+
+
+
+np.floor(arr) -> returns an array floor (lower)
+np.ceil(arr) -> returns an array ceil (upper)
+np.rint(arr) -> returns an array rint (nearest)
+
+numpy.set_printoptions(legacy = '1.13')
+
+np.sum(arr, axis = 0 | 1 | None) -> 0 for summing column-wise, 1 for summing row-wise, None for summing all
+np.prod(arr, axis = 0 | 1 | None) -> 0 for product column-wise, 1 for product row-wise, None for product all
