@@ -1,60 +1,29 @@
-import re
-def matches(pattern, string):
-    n = len(string)
-    idx = string.find(pattern[0])
-    count = 0
-    if len(pattern) == 1:
-        return string.count(pattern)
-    while True:
-        if n > idx and idx != -1 and n > idx+len(pattern)-1:
-            if string[idx:idx+len(pattern)] == pattern:
-                count += 1
-            idx += 1
-        else:
-            break
-    return count
-
+'''
+-->TASK0043:
+Understand the code of minion game,
+example: stuart starts with consonants, kevin starts with vowels
+BANANA
+'''
 def minion_game(string):
-    s1 = {}
-    s2 = {}
-    vowels = []
-    consonants = []
-    for ch in string:
-        if re.match(r'[AEIOU]', ch):
-            vowels.append(ch)
-            s2[ch] = string.count(ch)
-        else: 
-            s1[ch] = string.count(ch)
-            consonants.append(ch)
-    
-    for c in consonants:
-        idx = string.index(c)
-        for i in range(1 , len(string)-idx+1):
-            word = string[idx:idx+i]
-            score = matches(word, string)
-            s1[word] = score
-
-    for c in vowels:
-        idx = string.index(c)
-        for i in range(1 , len(string)-idx+1):
-            word = string[idx:idx+i]
-            score = matches(word, string)
-            s2[word] = score
-    sums = []
-
-    for player in [s1,s2]:
-        total = 0
-        for each in player.values():
-            total += each
-        sums.append(total)
-    if sums[0] > sums[1]:
-        print("Stuart", sums[0])
-    elif sums[1] > sums[0]:
-        print("Kevin", sums[1])
+    """Calculate scores for Stuart and Kevin in O(n) time.
+    Stuart scores for substrings starting with consonants, Kevin for vowels.
+    """
+    stuart_score = 0
+    kevin_score = 0
+    n = len(string)
+    vowels = set('AEIOU')
+    for i, ch in enumerate(string):
+        if ch in vowels:
+            kevin_score += n - i
+        else:
+            stuart_score += n - i
+    if stuart_score > kevin_score:
+        print("Stuart", stuart_score)
+    elif kevin_score > stuart_score:
+        print("Kevin", kevin_score)
     else:
         print("Draw")
 
-
 if __name__ == '__main__':
-    s = input()
+    s = input().strip()
     minion_game(s)
